@@ -1,0 +1,35 @@
+version: '3.3'
+services:
+  odoo15:
+    image: odoo:15.0
+    depends_on:
+      - db
+    ports:
+      - "8008:8069"
+    environment:
+      - PGHOST=db
+      - PGUSER=odoo
+      - PGPASSWORD=odoo
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+    volumes:
+      - ./extra_addons:/mnt/extra-addons
+      - ./odoo/addons:/mnt/addons
+      - ./odoo/odoo:/usr/lib/python3/dist-packages/odoo
+      - ./etc/odoo.conf:/etc/odoo/odoo.conf
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_DB=postgres
+    ports:
+      - '6008:5432'
+    volumes:
+      - ./etc/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./etc/pg_hba.conf:/etc/postgresql/pg_hba.conf
+    command: |
+      postgres
+      -c 'config_file=/etc/postgresql/postgresql.conf'
+      -c 'hba_file=/etc/postgresql/pg_hba.conf'

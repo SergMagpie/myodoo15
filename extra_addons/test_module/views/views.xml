@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record model="ir.ui.view" id="test_form">
+    <field name="name">test_form</field>
+    <field name="model">test.model</field>
+    <field name="arch" type="xml">
+      <form string="Test form">
+        <sheet>
+          <group>
+            <field name="name" />
+            <field name="start_date" />
+            <field name="end_date" />
+            <field name="duration" />
+            <field name="tester" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+
+  <record id="test_action" model="ir.actions.act_window">
+    <field name="name">test_action</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">test.model</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_empty_folder">
+                There is no data
+            </p>
+    </field>
+  </record>
+
+
+  <menuitem name="Test" id="test_module_root" sequence="10" />
+
+
+  <menuitem name="Sub test" id="test_module.menu_1" parent="test_module_root" action="test_action" sequence="2" />
+
+</odoo>
