@@ -5,7 +5,7 @@ services:
     depends_on:
       - db
     ports:
-      - "8008:8069"
+      - "8055:8069"
     environment:
       - PGHOST=db
       - PGUSER=odoo
@@ -25,7 +25,7 @@ services:
       - POSTGRES_USER=odoo
       - POSTGRES_DB=postgres
     ports:
-      - '6008:5432'
+      - '6055:5432'
     volumes:
       - ./etc/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./etc/pg_hba.conf:/etc/postgresql/pg_hba.conf
